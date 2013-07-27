@@ -205,7 +205,7 @@ class Ghost(object):
     :param display: A boolean that tells ghost to displays UI.
     :param viewport_size: A tuple that sets initial viewport size.
     :param ignore_ssl_errors: A boolean that forces ignore ssl errors.
-    :param cache_dir: A directory path where to store cache datas.
+    :param cache_dir: A directory path where to store cache datas. None will disable the cache.
     :param plugins_enabled: Enable plugins (like Flash).
     :param java_enabled: Enable Java JRE.
     :param plugin_path: Array with paths to plugin directories
@@ -284,7 +284,7 @@ class Ghost(object):
         self.manager.finished.connect(self._request_ended)
         self.manager.sslErrors.connect(self._on_manager_ssl_errors)
 
-        # Cache
+        # Cache, do not set the cache if cache_dir is None
         if cache_dir:
             self.cache = QNetworkDiskCache()
             self.cache.setCacheDirectory(cache_dir)
